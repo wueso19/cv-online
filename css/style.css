@@ -34,16 +34,12 @@ img {
   height: auto;
 }
 section {
+  padding-top: 110px;
   position: relative;
 }
 .wrapper {
   display: flex;
   height: 100%;
-}
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
 }
 .left-sidebar {
   display: flex;
@@ -58,9 +54,9 @@ main {
   overflow-y: auto;
 }
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 110px 0;
+  /* display: flex;
+  flex-direction: column; */
+  /* gap: 110px 0; */
   background-color: var(--bg-primary);
   width: 100vw;
 }
@@ -152,6 +148,7 @@ main {
 
 .section-title {
   font-size: 36px;
+  font-weight: 700;
   margin: 0;
   margin-left: 14px;
   position: relative;
@@ -170,43 +167,159 @@ main {
 /* end about */
 
 .experience {
-  background-color: chocolate;
-  height: 500px;
+  display: flex;
+  align-items: center;
+  background: var(--bg-primary);
+  padding: 0;
+  height: 100vh;
+  min-height: 100vh;
 }
 /* end experience */
 
 .works {
-  background-color: cornflowerblue;
-  height: 500px;
+  display: flex;
+  align-items: center;
+  background: var(--bg-primary);
+  padding: 0;
+  height: 100vh;
+  min-height: 100vh;
 }
 /* end works */
 
 .contact {
-  background-color: darkcyan;
-  height: 500px;
+  display: flex;
+  align-items: center;
+  background: var(--bg-primary);
+  padding: 0;
+  height: 100vh;
+  min-height: 100vh;
 }
 /* end contact */
 
-@media (min-width: 576px) {
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skill-item .skill-info h4 {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+}
+.skill-item .skill-info span {
+  font-size: 14px;
+}
+
+.progress {
+  display: -ms-flexbox;
+  display: flex;
+  height: 0.6rem;
+  overflow: hidden;
+  line-height: 0;
+  font-size: 0.75rem;
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+}
+
+.progress-bar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #007bff;
+  transition: width 0.6s ease;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+  .container {
+    max-width: 540px;
+  }
+ }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
   .container {
     max-width: 920px;
   }
-}
+  .triangle-left-md:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 15px solid #FFF;
+    position: absolute;
+    left: -3px;
+    top: 20%;
+  }
 
-@media (max-width: 1024px) {
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+ }
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+  .container {
+    max-width: 920px;
+  }
+ }
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+  .container {
+    max-width: 1080px;
+  }
+ }
+
+ @media only screen and (max-width: 768px) {
+  .triangle-top-sm:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FFF;
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    transform: translateX(-7.5px);
+  }
+ }
+
+@media (max-width: 992px) {
   section {
     padding-top: 80px;
   }
   .wrapper {
     flex-direction: column;
   }
-  .container {
-    max-width: 920px;
-  }
   .footer {
     display: none;
   }
   .left-sidebar {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+    background-color: var(--bg-primary);
+    min-width: 283px;
+    justify-content: space-between;
+    border: 0;
     padding-left: 2em;
   }
   .presentation {
@@ -214,7 +327,7 @@ main {
   }
 }
 
-@media screen and (min-width:1024px) {
+@media screen and (min-width:992px) {
   .container-fluid {
     flex-direction: column;
   }
@@ -278,6 +391,10 @@ main {
   opacity: 0.6;
 }
 
+.padding-30 {
+  padding: 30px;
+}
+
 @-webkit-keyframes fadeInUp {
   from {
     opacity: 0;
@@ -309,4 +426,8 @@ main {
 .fadeInUp {
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
+}
+
+.spacer {
+  clear: both;
 }

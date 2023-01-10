@@ -90,11 +90,25 @@ const presentationHtml = (userData) => {
     `;
 };
 
+const aboutMe = (userData) => {
+  const { name, email, picture, location, cell, phone } = userData;
+
+  const profileImg = document.getElementById("profile-img");
+  const hireMe = document.getElementById("hire-me");
+
+  profileImg.src = picture.large
+  profileImg.alt = `Imagen de ${name.first + " " + name.last}`
+
+  hireMe.href = `mailto:${email}`
+
+}
+
 getUserAsync().then(() => {
   try {
     userData = JSON.parse(userStorage.getItem("user"))
     if(userData) {
       presentationHtml(userData);
+      aboutMe(userData)
     }
   } catch (error) {
     console.error(error);
