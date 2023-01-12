@@ -1,33 +1,33 @@
 /***********************************
- * Scroll Smooth Efect
+ * Scroll Smooth Effect
  **********************************/
-const navLinks = [...document.querySelectorAll(".navbar ul li a")];
-const sections = [...document.querySelectorAll("section")];
-const main = document.querySelector("main");
+// const navLinks = [...document.querySelectorAll(".navbar ul li a")];
+// const sections = [...document.querySelectorAll("section")];
+// const main = document.querySelector("main");
 
-let sectionsPosition;
+// let sectionsPosition;
 
-const positionCalculation = () => {
-  if (window.innerWidth > 1024) {
-    sectionsPosition = sections.map((section) => section.offsetTop);    
-  } else {
-    sectionsPosition = sections.map((section) => section.offsetTop - 80)
-  }
-};
+// const positionCalculation = () => {
+//   if (window.innerWidth > 1024) {
+//     sectionsPosition = sections.map((section) => section.offsetTop);
+//   } else {
+//     sectionsPosition = sections.map((section) => section.offsetTop - 80)
+//   }
+// };
 
-positionCalculation();
+// positionCalculation();
 
-const addScrollSmooth = (e) => {
-  const linkIndex = navLinks.indexOf(e.target);
-  main.scrollTo({
-    top: sectionsPosition[linkIndex],
-    behavior: "smooth",
-  });
-};
+// const addScrollSmooth = (e) => {
+//   const linkIndex = navLinks.indexOf(e.target);
+//   main.scrollTo({
+//     top: sectionsPosition[linkIndex],
+//     behavior: "smooth",
+//   });
+// };
 
-navLinks.forEach((link) => link.addEventListener("click", addScrollSmooth));
+// navLinks.forEach((link) => link.addEventListener("click", addScrollSmooth));
 
-window.addEventListener("resize", positionCalculation);
+// window.addEventListener("resize", positionCalculation);
 
 /***********************************
  * Navigation Active Link
@@ -56,10 +56,10 @@ const getUserAsync = async () => {
     const response = await fetch("https://randomuser.me/api/");
     const data = await response.json();
     const user = await data.results[0];
-    userStorage.setItem("user", JSON.stringify(user))
+    userStorage.setItem("user", JSON.stringify(user));
   } catch (error) {
     console.error(error);
-    userStorage.removeItem("user")
+    userStorage.removeItem("user");
   }
 };
 
@@ -91,26 +91,56 @@ const presentationHtml = (userData) => {
 };
 
 const aboutMe = (userData) => {
-  const { name, email, picture, location, cell, phone } = userData;
+  const { name, email, picture } = userData;
 
   const profileImg = document.getElementById("profile-img");
   const hireMe = document.getElementById("hire-me");
 
-  profileImg.src = picture.large
-  profileImg.alt = `Imagen de ${name.first + " " + name.last}`
+  profileImg.src = picture.large;
+  profileImg.alt = `Imagen de ${name.first + " " + name.last}`;
 
-  hireMe.href = `mailto:${email}`
-
-}
+  hireMe.href = `mailto:${email}`;
+};
 
 getUserAsync().then(() => {
   try {
-    userData = JSON.parse(userStorage.getItem("user"))
-    if(userData) {
+    userData = JSON.parse(userStorage.getItem("user"));
+    if (userData) {
       presentationHtml(userData);
-      aboutMe(userData)
+      aboutMe(userData);
+      contactMe(userData);
     }
   } catch (error) {
     console.error(error);
   }
+});
+
+/***********************************
+ * Contact
+ **********************************/
+const contactMe = (userData) => {
+  const { email, location, cell, phone } = userData;
+
+  const infoLocation = document.getElementById("info-location");
+  const infoEmail = document.getElementById("info-email");
+  const infoCell = document.getElementById("info-cell");
+  const infoTel = document.getElementById("info-tel");
+
+  infoLocation.innerHTML = `${location.street.name},<br>${location.city}`;
+
+  infoEmail.href = `mailto:${email}`;
+  infoEmail.innerHTML = email;
+
+  infoCell.href = `callto:${cell}`;
+  infoCell.innerHTML = cell;
+
+  infoTel.href = `callto:${phone}`;
+  infoTel.innerHTML = phone;
+};
+
+const contactForm = document.getElementById("contact-form");
+
+contactForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  alert("Enviado!!");
 });
