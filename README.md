@@ -5,4 +5,4 @@
 - CSS
 - JavaScript
 
-[Live Demo](https://wueso19.github.io/cv-online/)
+<a href="https://github.com/wueso19/cv-online/" target="_blank">Live Demo</a>
